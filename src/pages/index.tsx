@@ -9,11 +9,18 @@ function Home() {
   const firstPokemon = trpc.useQuery(['get-pokemon-by-id', { id: first }]);
   const secondPokemon = trpc.useQuery(['get-pokemon-by-id', { id: second }]);
 
+  const voteMutation = trpc.useMutation(['cast-vote']);
+
   console.log(firstPokemon.data);
   if (firstPokemon.isLoading || secondPokemon.isLoading) return null;
 
-  const voteForRoundest = (selectedNumber: number) => {
+  const voteForRoundest = (selected: number) => {
     // fire mutation to persist changes to
+    if (selected === first) {
+      voteMutation.mutate({ votedFor: first, votedAgainst: second });
+    } else {
+      voteMutation.mutate({ votedFor: second, votedAgainst: first });
+    }
     updateIds(getOptionsForVote());
   };
   return (
