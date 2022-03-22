@@ -29,7 +29,7 @@ function Home() {
       <div className="border rounded p-8 flex justify-between max-w-2xl items-center">
         <div className="w-64 h-64 flex flex-col items-center">
           <img
-            src={firstPokemon.data?.sprites.front_default}
+            src={firstPokemon.data?.sprites.front_default ?? ''}
             alt=""
             className="w-full"
           />
@@ -46,7 +46,7 @@ function Home() {
         <div className="p-8">vs</div>
         <div className="w-64 h-64 flex flex-col items-center">
           <img
-            src={secondPokemon.data?.sprites.front_default}
+            src={secondPokemon.data?.sprites.front_default ?? ''}
             alt=""
             className="w-full"
           />
